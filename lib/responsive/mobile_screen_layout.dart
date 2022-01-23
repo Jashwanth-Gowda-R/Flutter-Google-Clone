@@ -19,13 +19,13 @@ class MobileScreenLayout extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: backgroundColor,
         elevation: 0,
-        leading: IconButton(
-          onPressed: () {},
-          icon: Icon(
-            Icons.menu,
-            color: Colors.grey,
-          ),
-        ),
+        // leading: IconButton(
+        //   onPressed: () {},
+        //   icon: Icon(
+        //     Icons.menu,
+        //     color: Colors.grey,
+        //   ),
+        // ),
         title: SizedBox(
           width: size.width * 0.3,
           child: DefaultTabController(
@@ -95,6 +95,39 @@ class MobileScreenLayout extends StatelessWidget {
           )
         ],
       ),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            const DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.blue,
+              ),
+              child: Center(child: Text('Google')),
+            ),
+            ListTile(
+              title: const Text(
+                'Gmail',
+                style: TextStyle(
+                  color: primaryColor,
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+              onTap: () {},
+            ),
+            ListTile(
+              title: const Text(
+                'Images',
+                style: TextStyle(
+                  color: primaryColor,
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+              onTap: () {},
+            ),
+          ],
+        ),
+      ),
       body: Padding(
         padding: const EdgeInsets.only(
           left: 5,
@@ -103,24 +136,29 @@ class MobileScreenLayout extends StatelessWidget {
         child: Column(
           children: [
             SizedBox(
-              height: size.height * 0.25,
+              height: size.height * 0.1,
             ),
             Expanded(
-                child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  children: [
-                    Search(),
-                    SearchButtons(),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    TranslationButtons(),
-                  ],
-                ),
-                MobileFooter(),
-              ],
+                child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    children: [
+                      Search(),
+                      SearchButtons(),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      TranslationButtons(),
+                    ],
+                  ),
+                  SizedBox(
+                    height: size.height * .15,
+                  ),
+                  MobileFooter(),
+                ],
+              ),
             ))
           ],
         ),
