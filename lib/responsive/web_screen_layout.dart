@@ -6,6 +6,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_clone/widgets/search.dart';
 import 'package:google_clone/widgets/translation_button.dart';
 import 'package:google_clone/widgets/web/search_buttons.dart';
+import 'package:google_clone/widgets/web/web_footer.dart';
 
 class WebScreenLayout extends StatelessWidget {
   const WebScreenLayout({Key? key}) : super(key: key);
@@ -92,6 +93,7 @@ class WebScreenLayout extends StatelessWidget {
                     TranslationButtons(),
                   ],
                 ),
+                WebFooter(),
               ],
             ))
           ],

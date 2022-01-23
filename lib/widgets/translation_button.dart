@@ -1,7 +1,6 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:google_clone/colors.dart';
 import 'package:google_clone/widgets/language_text.dart';
 
 class TranslationButtons extends StatelessWidget {
