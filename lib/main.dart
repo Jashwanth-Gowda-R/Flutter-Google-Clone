@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_clone/colors.dart';
 import 'package:google_clone/responsive/mobile_screen_layout.dart';
 import 'package:google_clone/responsive/responsive_layout_screen.dart';
 import 'package:google_clone/responsive/web_screen_layout.dart';
@@ -13,9 +14,12 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
+      theme: ThemeData.dark().copyWith(
+        scaffoldBackgroundColor: backgroundColor,
+      ),
       home: ResponsiveScreenLayout(
         mobileScreenLayout: MobileScreenLayout(),
         webScreenLayout: WebScreenLayout(),
