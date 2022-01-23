@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:google_clone/responsive/mobile_screen_layout.dart';
+import 'package:google_clone/responsive/responsive_layout_screen.dart';
+import 'package:google_clone/responsive/web_screen_layout.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,7 +16,10 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      home: Text('Hello Shani'),
+      home: ResponsiveScreenLayout(
+        mobileScreenLayout: MobileScreenLayout(),
+        webScreenLayout: WebScreenLayout(),
+      ),
     );
   }
 }
