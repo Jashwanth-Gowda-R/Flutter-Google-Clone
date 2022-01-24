@@ -20,6 +20,10 @@ class SearchScreen extends StatelessWidget {
               padding: const EdgeInsets.only(left: 150.0),
               child: SearchTabs(),
             ),
+            Divider(
+              height: 0,
+              thickness: 0.3,
+            ),
           ],
         ),
       ),
