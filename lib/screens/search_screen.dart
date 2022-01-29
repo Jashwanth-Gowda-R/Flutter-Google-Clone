@@ -5,6 +5,7 @@ import 'package:google_clone/colors.dart';
 import 'package:google_clone/services/api_service.dart';
 import 'package:google_clone/widgets/search_footer.dart';
 import 'package:google_clone/widgets/search_header.dart';
+import 'package:google_clone/widgets/search_result_component.dart';
 import 'package:google_clone/widgets/search_tabs.dart';
 
 class SearchScreen extends StatelessWidget {
@@ -12,6 +13,8 @@ class SearchScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -49,6 +52,24 @@ class SearchScreen extends StatelessWidget {
                           ),
                         ),
                       ),
+                      ListView.builder(
+                        physics: const NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        itemCount: snapshot.data?['items'].length,
+                        itemBuilder: (context, index) {
+                          return Padding(
+                            padding: EdgeInsets.only(
+                                left: size.width <= 768 ? 10 : 150, top: 10),
+                            child: SearchResultComponent(
+                                linkToGo: snapshot.data?['items'][index]['link'],
+                                link: snapshot.data?['items'][index]
+                                    ['formattedUrl'],
+                                text: snapshot.data?['items'][index]['title'],
+                                desc: snapshot.data?['items'][index]['snippet'],
+                                ),
+                          );
+                        },
+                      )
                     ],
                   );
                 }
