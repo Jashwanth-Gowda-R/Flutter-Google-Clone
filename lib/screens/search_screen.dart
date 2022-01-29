@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_clone/colors.dart';
+import 'package:google_clone/services/api_service.dart';
 import 'package:google_clone/widgets/search_footer.dart';
 import 'package:google_clone/widgets/search_header.dart';
 import 'package:google_clone/widgets/search_tabs.dart';
@@ -26,7 +27,37 @@ class SearchScreen extends StatelessWidget {
               height: 0,
               thickness: 0.3,
             ),
-            // pagination
+            FutureBuilder(
+              future: ApiService()
+                  .fetchData(context: context, queryTerm: 'Jashwanth'),
+              builder: (BuildContext context, AsyncSnapshot snapshot) {
+                if (snapshot.hasData) {
+                  return Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        padding: EdgeInsets.only(
+                          left: 150,
+                          top: 12,
+                        ),
+                        child: Text(
+                          'About ${snapshot.data?['searchInformation']['formattedTotalResults']} results (${snapshot.data?['searchInformation']['formattedSearchTime']} seconds)',
+                          style: TextStyle(
+                            fontSize: 15,
+                            color: Colors.grey[500],
+                          ),
+                        ),
+                      ),
+                    ],
+                  );
+                }
+                return Center(
+                  child: CircularProgressIndicator(),
+                );
+              },
+            ),
+            // pagination btns
             Container(
               width: double.infinity,
               child: Row(
