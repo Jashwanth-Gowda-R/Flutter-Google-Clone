@@ -9,7 +9,10 @@ import 'package:google_clone/widgets/search_result_component.dart';
 import 'package:google_clone/widgets/search_tabs.dart';
 
 class SearchScreen extends StatelessWidget {
-  const SearchScreen({Key? key}) : super(key: key);
+  final String searchQuery;
+  final String start;
+  const SearchScreen({Key? key, required this.searchQuery, required this.start})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -31,8 +34,11 @@ class SearchScreen extends StatelessWidget {
               thickness: 0.3,
             ),
             FutureBuilder(
-              future: ApiService()
-                  .fetchData(context: context, queryTerm: 'Jashwanth'),
+              future: ApiService().fetchData(
+                context: context,
+                queryTerm: searchQuery,
+                start: start,
+              ),
               builder: (BuildContext context, AsyncSnapshot snapshot) {
                 if (snapshot.hasData) {
                   return Column(
@@ -45,7 +51,7 @@ class SearchScreen extends StatelessWidget {
                           top: 12,
                         ),
                         child: Text(
-                          'About ${snapshot.data?['searchInformation']['formattedTotalResults']} results (${snapshot.data?['searchInformation']['formattedSearchTime']} seconds)',
+                          'About ${snapshot.data?['searchInformation']['formattedTotalResults']} results  (${snapshot.data?['searchInformation']['formattedSearchTime']} seconds)',
                           style: TextStyle(
                             fontSize: 15,
                             color: Colors.grey[500],
@@ -61,12 +67,12 @@ class SearchScreen extends StatelessWidget {
                             padding: EdgeInsets.only(
                                 left: size.width <= 768 ? 10 : 150, top: 10),
                             child: SearchResultComponent(
-                                linkToGo: snapshot.data?['items'][index]['link'],
-                                link: snapshot.data?['items'][index]
-                                    ['formattedUrl'],
-                                text: snapshot.data?['items'][index]['title'],
-                                desc: snapshot.data?['items'][index]['snippet'],
-                                ),
+                              linkToGo: snapshot.data?['items'][index]['link'],
+                              link: snapshot.data?['items'][index]
+                                  ['formattedUrl'],
+                              text: snapshot.data?['items'][index]['title'],
+                              desc: snapshot.data?['items'][index]['snippet'],
+                            ),
                           );
                         },
                       )
@@ -86,7 +92,15 @@ class SearchScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   TextButton(
-                    onPressed: () {},
+                    onPressed: start != "0"
+                        ? () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => SearchScreen(
+                                      searchQuery: searchQuery,
+                                      start: (int.parse(start) - 10).toString(),
+                                    )));
+                          }
+                        : () {},
                     child: Text(
                       '< Prev',
                       style: TextStyle(
@@ -99,7 +113,16 @@ class SearchScreen extends StatelessWidget {
                     width: 30,
                   ),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => SearchScreen(
+                            searchQuery: searchQuery,
+                            start: (int.parse(start) + 10).toString(),
+                          ),
+                        ),
+                      );
+                    },
                     child: Text(
                       'Next >',
                       style: TextStyle(
