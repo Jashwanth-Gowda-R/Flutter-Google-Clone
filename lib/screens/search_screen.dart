@@ -26,7 +26,7 @@ class SearchScreen extends StatelessWidget {
           children: [
             SearchHeader(),
             Padding(
-              padding: const EdgeInsets.only(left: 150.0),
+              padding: EdgeInsets.only(left: size.width <= 768 ? 10 : 150.0),
               child: SearchTabs(),
             ),
             Divider(
@@ -47,7 +47,7 @@ class SearchScreen extends StatelessWidget {
                     children: [
                       Container(
                         padding: EdgeInsets.only(
-                          left: 150,
+                          left: size.width <= 768 ? 10 : 150,
                           top: 12,
                         ),
                         child: Text(

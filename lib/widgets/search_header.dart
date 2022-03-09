@@ -12,7 +12,7 @@ class SearchHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Padding(
-      padding: EdgeInsets.only(top: 25),
+      padding: EdgeInsets.only(top: size.width <= 768 ? 60 : 25),
       child: Row(
         children: [
           Padding(
@@ -29,7 +29,7 @@ class SearchHeader extends StatelessWidget {
           ),
           const SizedBox(width: 27),
           Container(
-            width: size.width * 0.45,
+            width: size.width <= 768 ? size.width * 0.5 : size.width * 0.45,
             decoration: BoxDecoration(
               color: searchColor,
               borderRadius: BorderRadius.circular(22),

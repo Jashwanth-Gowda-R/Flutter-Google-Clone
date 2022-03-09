@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:google_clone/widgets/search_tab.dart';
 
@@ -10,7 +12,7 @@ class SearchTabs extends StatelessWidget {
       height: 55,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.end,
-        children: const [
+        children: [
           SearchTab(
             isActive: true,
             text: 'All',
@@ -32,15 +34,19 @@ class SearchTabs extends StatelessWidget {
             icon: Icons.article,
           ),
           SizedBox(width: 20),
-          SearchTab(
-            text: 'Shopping',
-            icon: Icons.shop,
-          ),
+          MediaQuery.of(context).size.width <= 400
+              ? Container()
+              : SearchTab(
+                  text: 'Shopping',
+                  icon: Icons.shop,
+                ),
           SizedBox(width: 20),
-          SearchTab(
-            text: 'More',
-            icon: Icons.more_vert,
-          ),
+          MediaQuery.of(context).size.width <= 400
+              ? Container()
+              : SearchTab(
+                  text: 'More',
+                  icon: Icons.more_vert,
+                ),
         ],
       ),
     );
