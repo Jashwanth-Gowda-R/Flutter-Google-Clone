@@ -146,11 +146,11 @@ class MobileScreenLayout extends StatelessWidget {
                   Column(
                     children: [
                       Search(),
-                      SearchButtons(),
+                      // SearchButtons(),
                       SizedBox(
                         height: 20,
                       ),
-                      TranslationButtons(),
+                      // TranslationButtons(),
                     ],
                   ),
                   SizedBox(
