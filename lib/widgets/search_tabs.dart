@@ -12,7 +12,7 @@ class SearchTabs extends StatelessWidget {
       height: 55,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.end,
-        children: [
+        children: const [
           SearchTab(
             isActive: true,
             text: 'All',
@@ -34,19 +34,15 @@ class SearchTabs extends StatelessWidget {
             icon: Icons.article,
           ),
           SizedBox(width: 20),
-          MediaQuery.of(context).size.width <= 400
-              ? Container()
-              : SearchTab(
-                  text: 'Shopping',
-                  icon: Icons.shop,
-                ),
+          SearchTab(
+            text: 'Shopping',
+            icon: Icons.shop,
+          ),
           SizedBox(width: 20),
-          MediaQuery.of(context).size.width <= 400
-              ? Container()
-              : SearchTab(
-                  text: 'More',
-                  icon: Icons.more_vert,
-                ),
+          SearchTab(
+            text: 'More',
+            icon: Icons.more_vert,
+          ),
         ],
       ),
     );

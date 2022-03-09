@@ -30,7 +30,8 @@ class SearchScreen extends StatelessWidget {
               SearchHeader(),
               Padding(
                 padding: EdgeInsets.only(left: size.width <= 768 ? 10 : 150.0),
-                child: SearchTabs(),
+                child: SingleChildScrollView(
+                    scrollDirection: Axis.horizontal, child: SearchTabs()),
               ),
               Divider(
                 height: 0,
