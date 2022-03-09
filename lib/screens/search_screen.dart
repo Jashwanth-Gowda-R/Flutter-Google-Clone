@@ -75,7 +75,65 @@ class SearchScreen extends StatelessWidget {
                             ),
                           );
                         },
-                      )
+                      ),
+                      // pagination btns
+                      Container(
+                        width: double.infinity,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            TextButton(
+                              onPressed: start != "0"
+                                  ? () {
+                                      Navigator.of(context).push(
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  SearchScreen(
+                                                    searchQuery: searchQuery,
+                                                    start:
+                                                        (int.parse(start) - 10)
+                                                            .toString(),
+                                                  )));
+                                    }
+                                  : () {},
+                              child: Text(
+                                '< Prev',
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  color: blueColor,
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              width: 30,
+                            ),
+                            TextButton(
+                              onPressed: () {
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (context) => SearchScreen(
+                                      searchQuery: searchQuery,
+                                      start: (int.parse(start) + 10).toString(),
+                                    ),
+                                  ),
+                                );
+                              },
+                              child: Text(
+                                'Next >',
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  color: blueColor,
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 30,
+                            ),
+                          ],
+                        ),
+                      ),
+                      SearchFooter(),
                     ],
                   );
                 }
@@ -84,60 +142,6 @@ class SearchScreen extends StatelessWidget {
                 );
               },
             ),
-            // pagination btns
-            Container(
-              width: double.infinity,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  TextButton(
-                    onPressed: start != "0"
-                        ? () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => SearchScreen(
-                                      searchQuery: searchQuery,
-                                      start: (int.parse(start) - 10).toString(),
-                                    )));
-                          }
-                        : () {},
-                    child: Text(
-                      '< Prev',
-                      style: TextStyle(
-                        fontSize: 15,
-                        color: blueColor,
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 30,
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => SearchScreen(
-                            searchQuery: searchQuery,
-                            start: (int.parse(start) + 10).toString(),
-                          ),
-                        ),
-                      );
-                    },
-                    child: Text(
-                      'Next >',
-                      style: TextStyle(
-                        fontSize: 15,
-                        color: blueColor,
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 30,
-                  ),
-                ],
-              ),
-            ),
-            SearchFooter(),
           ],
         ),
       ),
