@@ -38,7 +38,11 @@ class SearchResultComponent extends StatelessWidget {
             ),
             onTap: () async {
               if (await canLaunch(linkToGo)) {
-                await launch(linkToGo);
+                await launch(
+                  linkToGo,
+                  enableJavaScript: true,
+                  forceWebView: true,
+                );
               }
             },
           ),
