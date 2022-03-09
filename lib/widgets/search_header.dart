@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_clone/colors.dart';
+import 'package:google_clone/screens/search_screen.dart';
 
 class SearchHeader extends StatelessWidget {
   const SearchHeader({Key? key}) : super(key: key);
@@ -39,15 +40,14 @@ class SearchHeader extends StatelessWidget {
             height: 44,
             child: TextField(
               onSubmitted: (text) {
-                // if (text.trim() != "") {
-                //   Navigator.of(context).push(
-                //     MaterialPageRoute(
-                //       builder: (context) => SearchScreen(
-                //         searchQuery: text.trim(),
-                //       ),
-                //     ),
-                //   );
-                // }
+                if (text.trim() != "") {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          SearchScreen(searchQuery: text.trim(), start: '0'),
+                    ),
+                  );
+                }
               },
               style: const TextStyle(fontSize: 16),
               textAlignVertical: TextAlignVertical.center,
