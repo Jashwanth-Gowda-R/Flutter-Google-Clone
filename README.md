@@ -2,7 +2,7 @@
 
 Responsive Google Clone with Flutter project.
 
-view this flutter web site [here](https://fluttershanigoogleclone.netlify.app/)
+View this flutter web site [here](https://fluttershanigoogleclone.netlify.app/), if the site don't reload try refresh it twice.
 
 ## Getting Started
 
